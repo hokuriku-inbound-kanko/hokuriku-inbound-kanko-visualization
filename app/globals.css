@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #a5140e;
+  --color-secondary: #f9b42b;
+  --color-surface: #fefefe;
+  --color-separator: #f1eee3;
+  --color-text: #010101;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-primary: #5aebf1;
+    --color-secondary: #064bd4;
+    --color-surface: #010101;
+    --color-separator: #0e111c;
+    --color-text: #fefefe;
+  }
+}
+
+body {
+  color: var(--color-text);
+  background: var(--color-background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+  @apply underline underline-offset-4 transition-all hover:scale-105 hover:text-secondary;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
