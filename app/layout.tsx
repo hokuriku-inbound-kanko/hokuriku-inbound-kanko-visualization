@@ -23,17 +23,11 @@ export default function RootLayout({
             href="/"
             rel="noopener noreferrer"
           >
-            <GraphIcon
-              size="medium"
-              verticalAlign="top"
-              className="fill-primary"
-            />
+            <GraphIcon size="medium" verticalAlign="top" className="fill-primary" />
             <h1 className="text-2xl font-bold">オープンデータグラフ</h1>
           </a>
         </header>
-        <main className="flex h-full w-full flex-grow flex-col items-center p-4">
-          {children}
-        </main>
+        <main className="flex h-full w-full flex-grow flex-col items-center p-4">{children}</main>
         <footer className="flex h-fit w-full flex-wrap items-center justify-center gap-x-4 gap-y-2 border-t-2 border-separator pt-2">
           <a
             className="flex items-center gap-2"
@@ -53,11 +47,7 @@ export default function RootLayout({
             <MarkGithubIcon size="medium" />
             Data source
           </a>
-          <a
-            href="https://kanko-dx.jp/case-study/1784/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href="https://kanko-dx.jp/case-study/1784/" target="_blank" rel="noopener noreferrer">
             <Image
               aria-hidden
               src="https://kanko-dx.jp/wp-content/themes/kanko-dx/assets/img/common/logo-header.svg"
