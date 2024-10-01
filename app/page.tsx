@@ -1,3 +1,4 @@
+import Card from "@/components/card.component";
 import { Graph } from "@/components/graph.component";
 import { DataService } from "@/service/data.service";
 import Papa from "papaparse";
@@ -46,10 +47,9 @@ export default async function Home() {
   return (
     <>
       <h2 className="mb-4 text-xl font-bold">直近1週間のアンケート結果</h2>
-      <article className="mb-4 flex flex-col items-center gap-y-4 rounded-lg bg-separator p-4">
-        <h3 className="text-lg font-bold">国籍</h3>
+      <Card title="国籍">
         <Graph type="donut" series={options.series} options={options} width={""} height={""} />
-      </article>
+      </Card>
     </>
   );
 }
