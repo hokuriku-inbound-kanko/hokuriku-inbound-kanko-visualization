@@ -4,7 +4,7 @@ import Card from "../card.component";
 import { Graph } from "../graph.component";
 import Papa from "papaparse";
 
-export default async function InfoSourceGraph() {
+export default async function FacilityInfoSourceGraph() {
   const dataService = new DataService();
 
   const data = Papa.parse<string[]>(
@@ -41,7 +41,7 @@ export default async function InfoSourceGraph() {
   };
 
   return (
-    <Card title="情報収集元（複数回答あり）">
+    <Card title="施設情報をどこで知ったか（複数回答あり）">
       <Graph type="bar" series={options.series} options={options} />
     </Card>
   );
