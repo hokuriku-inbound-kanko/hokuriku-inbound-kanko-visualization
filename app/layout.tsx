@@ -40,7 +40,7 @@ export default function RootLayout({
           </a>
           <a
             className="flex items-center gap-2"
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href="https://github.com/hokuriku-inbound-kanko/hokuriku-gift-campaign"
             target="_blank"
             rel="noopener noreferrer"
           >
