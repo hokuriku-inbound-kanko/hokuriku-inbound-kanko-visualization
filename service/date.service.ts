@@ -7,8 +7,12 @@ export class DateService {
    * @returns {Date} 昨日のDate
    */
   public static yesterday(): Date {
+    return this.nDaysAgo(1);
+  }
+
+  public static nDaysAgo(n: number): Date {
     const result = new Date();
-    result.setDate(result.getDate() - 1);
+    result.setDate(result.getDate() - n);
     return result;
   }
 
