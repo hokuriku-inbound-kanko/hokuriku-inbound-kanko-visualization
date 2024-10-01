@@ -1,5 +1,6 @@
 import AgeRangeGraph from "@/components/graphs/age-range-graph.component";
 import GenderGraph from "@/components/graphs/gender-graph.component";
+import InfoSourceGraph from "@/components/graphs/info-source-graph.component";
 import NationalitiesGraph from "@/components/graphs/nationalities-graph.component";
 
 export default async function Home() {
@@ -10,6 +11,7 @@ export default async function Home() {
         <NationalitiesGraph />
         <AgeRangeGraph />
         <GenderGraph />
+        <InfoSourceGraph />
       </div>
     </>
   );
