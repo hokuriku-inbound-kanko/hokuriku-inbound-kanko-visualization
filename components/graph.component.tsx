@@ -21,7 +21,7 @@ export function Graph(props: Required<Pick<Props, "type" | "series" | "options">
       series={props?.series}
       height={innerWidth <= 640 ? 210 : 270}
       width={innerWidth <= 640 ? 280 : 360}
-      options={props?.options}
+      options={{ ...props?.options, chart: { toolbar: { show: false } } }}
     />
   );
 }
