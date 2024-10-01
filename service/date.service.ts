@@ -10,6 +10,11 @@ export class DateService {
     return this.nDaysAgo(1);
   }
 
+  /**
+   * n日前のDateを取得する
+   * @param n
+   * @returns
+   */
   public static nDaysAgo(n: number): Date {
     const result = new Date();
     result.setDate(result.getDate() - n);
@@ -27,5 +32,18 @@ export class DateService {
     const month = (date.getMonth() + 1).toString().padStart(2, "0");
     const dayOfMonth = date.getDate().toString().padStart(2, "0");
     return `${year}${delimiter}${month}${delimiter}${dayOfMonth}`;
+  }
+
+  /**
+   * Date a から Date b を引いた値
+   * @param a
+   * @param b
+   */
+  public static sub(from: Date, to: Date) {
+    const diffEpochTime = to.getTime() - from.getTime();
+    return {
+      times: diffEpochTime,
+      days: Math.floor(diffEpochTime / (1000 * 60 * 60 * 24)),
+    };
   }
 }
