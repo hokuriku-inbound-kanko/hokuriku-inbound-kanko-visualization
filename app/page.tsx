@@ -19,15 +19,15 @@ export default async function Home() {
         {DateService.dateStrOf(weekAgo)} 〜 {DateService.dateStrOf(yesterday)} 回答分
       </p>
       <div className="grid h-full w-full grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
-        <NationalitiesGraph />
-        <AgeRangeGraph />
-        <GenderGraph />
-        <TripInfoSourceGraph />
-        <FacilityInfoSourceGraph />
-        <HowManyVisitsJapanGraph />
-        <PurposeOfVisitRegionGraph />
-        <PurposeOfVisitPrefectureGraph />
-        <PurposeOfVisitFacilityGraph />
+        <NationalitiesGraph span={{ from: weekAgo, to: yesterday }} />
+        <AgeRangeGraph span={{ from: weekAgo, to: yesterday }} />
+        <GenderGraph span={{ from: weekAgo, to: yesterday }} />
+        <TripInfoSourceGraph span={{ from: weekAgo, to: yesterday }} />
+        <FacilityInfoSourceGraph span={{ from: weekAgo, to: yesterday }} />
+        <HowManyVisitsJapanGraph span={{ from: weekAgo, to: yesterday }} />
+        <PurposeOfVisitRegionGraph span={{ from: weekAgo, to: yesterday }} />
+        <PurposeOfVisitPrefectureGraph span={{ from: weekAgo, to: yesterday }} />
+        <PurposeOfVisitFacilityGraph span={{ from: weekAgo, to: yesterday }} />
       </div>
     </>
   );

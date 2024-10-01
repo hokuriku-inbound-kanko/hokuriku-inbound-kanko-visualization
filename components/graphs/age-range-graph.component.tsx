@@ -4,11 +4,14 @@ import Papa from "papaparse";
 import Card from "../card.component";
 import { Graph } from "../graph.component";
 
-export default async function AgeRangeGraph() {
+export default async function AgeRangeGraph(props: { span: { from: Date; to?: Date } }) {
   const dataService = new DataService();
 
   const data = Papa.parse<string[]>(
-    await dataService.getSpan("hokuriku-gift-campaign", DateService.nDaysAgo(8)),
+    await dataService.getSpan(
+      "hokuriku-gift-campaign",
+      DateService.nDaysAgo(DateService.sub(props.span.from, props.span.to ?? new Date()).days),
+    ),
   );
 
   const answers: { answer: string; from: number; to: number; count: number }[] = [];

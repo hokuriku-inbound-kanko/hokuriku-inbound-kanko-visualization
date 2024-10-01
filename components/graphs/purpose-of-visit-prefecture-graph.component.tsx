@@ -4,11 +4,16 @@ import Card from "../card.component";
 import { Graph } from "../graph.component";
 import Papa from "papaparse";
 
-export default async function PurposeOfVisitPrefectureGraph() {
+export default async function PurposeOfVisitPrefectureGraph(props: {
+  span: { from: Date; to?: Date };
+}) {
   const dataService = new DataService();
 
   const data = Papa.parse<string[]>(
-    await dataService.getSpan("hokuriku-gift-campaign", DateService.nDaysAgo(8)),
+    await dataService.getSpan(
+      "hokuriku-gift-campaign",
+      DateService.nDaysAgo(DateService.sub(props.span.from, props.span.to ?? new Date()).days),
+    ),
   );
 
   const answers = data.data
