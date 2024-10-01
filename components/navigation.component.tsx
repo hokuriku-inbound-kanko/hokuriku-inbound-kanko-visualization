@@ -1,5 +1,6 @@
 "use client";
 import { ArchiveIcon, ChevronDownIcon, FlameIcon } from "@primer/octicons-react";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Navigation() {
@@ -16,14 +17,14 @@ export default function Navigation() {
       <nav
         className={`absolute ${openNav ? "" : "hidden"} left-0 top-[58px] flex h-fit w-fit flex-col items-start gap-4 rounded-lg border-2 border-separator bg-surface p-4 transition-all sm:w-[300px]`}
       >
-        <a className="flex items-center gap-2" href="/">
+        <Link className="flex items-center gap-2" href="/">
           <FlameIcon size="medium" />
           直近1週間のグラフ
-        </a>
-        <a className="flex items-center gap-2" href="/all">
+        </Link>
+        <Link className="flex items-center gap-2" href="/all">
           <ArchiveIcon size="medium" />
           アンケート全期間のグラフ
-        </a>
+        </Link>
       </nav>
     </>
   );
