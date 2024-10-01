@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { GraphIcon, MarkGithubIcon } from "@primer/octicons-react";
 import Image from "next/image";
+import Navigation from "@/components/navigation.component";
 
 export const metadata: Metadata = {
   title: "北陸インバウンド観光DX オープンデータグラフ",
@@ -18,6 +19,7 @@ export default function RootLayout({
     <html lang="ja">
       <body className="flex min-h-screen flex-col items-center justify-center p-4 antialiased">
         <header className="flex h-fit w-full items-center justify-start gap-x-2 border-b-2 border-separator pb-2">
+          <Navigation />
           <a
             className="flex h-fit w-fit items-center justify-start gap-x-2 no-underline"
             href="/"
@@ -33,7 +35,6 @@ export default function RootLayout({
             className="flex items-center gap-2"
             href="https://github.com/hokuriku-inbound-kanko/hokuriku-inbound-kanko-visualization"
             target="_blank"
-            rel="noopener noreferrer"
           >
             <MarkGithubIcon size="medium" />
             Page source
@@ -42,12 +43,11 @@ export default function RootLayout({
             className="flex items-center gap-2"
             href="https://github.com/hokuriku-inbound-kanko/hokuriku-gift-campaign"
             target="_blank"
-            rel="noopener noreferrer"
           >
             <MarkGithubIcon size="medium" />
             Data source
           </a>
-          <a href="https://kanko-dx.jp/case-study/1784/" target="_blank" rel="noopener noreferrer">
+          <a href="https://kanko-dx.jp/case-study/1784/" target="_blank">
             <Image
               aria-hidden
               src="https://kanko-dx.jp/wp-content/themes/kanko-dx/assets/img/common/logo-header.svg"
