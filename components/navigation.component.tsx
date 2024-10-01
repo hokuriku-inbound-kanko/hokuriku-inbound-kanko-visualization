@@ -14,7 +14,7 @@ export default function Navigation() {
         <ChevronDownIcon size="medium" />
       </button>
       <nav
-        className={`absolute transition-all left-[${openNav ? "0px" : "-100dvw"}] top-[58px] flex h-fit w-fit flex-col items-start gap-4 rounded-lg border-2 border-separator bg-surface p-4 sm:w-[300px]`}
+        className={`absolute ${openNav ? "" : "hidden"} left-0 top-[58px] flex h-fit w-fit flex-col items-start gap-4 rounded-lg border-2 border-separator bg-surface p-4 transition-all sm:w-[300px]`}
       >
         <a className="flex items-center gap-2" href="/">
           <FlameIcon size="medium" />
