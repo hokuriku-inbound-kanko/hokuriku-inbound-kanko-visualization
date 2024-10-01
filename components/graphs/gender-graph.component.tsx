@@ -14,7 +14,7 @@ export default async function GenderGraph() {
   const answers = data.data
     .map((row) => row[9])
     .filter((v) => !!v)
-    .map((v) => v.toString().trim())
+    .map((v) => `${v.toString().trim()}性`)
     .reduce(
       (p: { answer: string; count: number }[][], c) => {
         if (!p[0].map((v) => v.answer).includes(c)) p[0].push({ answer: c, count: 0 });
