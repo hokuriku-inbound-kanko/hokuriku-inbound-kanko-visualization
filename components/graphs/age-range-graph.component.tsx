@@ -34,8 +34,6 @@ export default async function AgeRangeGraph() {
     ],
   };
 
-  console.log(options);
-
   return (
     <Card title="年代">
       <Graph type="bar" series={options.series} options={options} />
