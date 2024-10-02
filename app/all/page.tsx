@@ -12,6 +12,8 @@ import { DAY_OF_BEGINNING } from "../constants";
 import VisitedPrefectureGraph from "@/components/graphs/visited-prefecture-graph.component";
 import VisitedAreaGraph from "@/components/graphs/visited-area-graph.component";
 import VisitedFacilityGraph from "@/components/graphs/visited-facility-graph.component";
+import FacilityEvaluationGraph from "@/components/graphs/facility-evaluation-graph.component";
+import RecomendationRatingGraph from "@/components/graphs/recomendation-rating-graph.component";
 
 export default async function All() {
   const beginned = DAY_OF_BEGINNING;
@@ -35,6 +37,8 @@ export default async function All() {
         <PurposeOfVisitRegionGraph span={{ from: beginned, to: yesterday }} />
         <PurposeOfVisitPrefectureGraph span={{ from: beginned, to: yesterday }} />
         <PurposeOfVisitFacilityGraph span={{ from: beginned, to: yesterday }} />
+        <FacilityEvaluationGraph span={{ from: beginned, to: yesterday }} />
+        <RecomendationRatingGraph span={{ from: beginned, to: yesterday }} />
       </div>
     </>
   );

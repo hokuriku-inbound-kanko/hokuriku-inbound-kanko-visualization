@@ -1,4 +1,5 @@
 import AgeRangeGraph from "@/components/graphs/age-range-graph.component";
+import FacilityEvaluationGraph from "@/components/graphs/facility-evaluation-graph.component";
 import FacilityInfoSourceGraph from "@/components/graphs/facility-info-source-graph.component";
 import GenderGraph from "@/components/graphs/gender-graph.component";
 import HowManyVisitsJapanGraph from "@/components/graphs/how-many-visits-japan-graph.component";
@@ -6,6 +7,7 @@ import NationalitiesGraph from "@/components/graphs/nationalities-graph.componen
 import PurposeOfVisitFacilityGraph from "@/components/graphs/purpose-of-visit-facility-graph.component";
 import PurposeOfVisitPrefectureGraph from "@/components/graphs/purpose-of-visit-prefecture-graph.component";
 import PurposeOfVisitRegionGraph from "@/components/graphs/purpose-of-visit-region-graph.component";
+import RecomendationRatingGraph from "@/components/graphs/recomendation-rating-graph.component";
 import TripInfoSourceGraph from "@/components/graphs/trip-info-source-graph.component";
 import VisitedAreaGraph from "@/components/graphs/visited-area-graph.component";
 import VisitedFacilityGraph from "@/components/graphs/visited-facility-graph.component";
@@ -34,6 +36,8 @@ export default async function Home() {
         <PurposeOfVisitRegionGraph span={{ from: weekAgo, to: yesterday }} />
         <PurposeOfVisitPrefectureGraph span={{ from: weekAgo, to: yesterday }} />
         <PurposeOfVisitFacilityGraph span={{ from: weekAgo, to: yesterday }} />
+        <FacilityEvaluationGraph span={{ from: weekAgo, to: yesterday }} />
+        <RecomendationRatingGraph span={{ from: weekAgo, to: yesterday }} />
       </div>
     </>
   );
