@@ -9,7 +9,7 @@ export default function Navigation() {
   return (
     <>
       <button
-        className={`h-8 w-8 transition-all hover:scale-110 hover:text-secondary ${openNav ? "rotate-180" : ""}`}
+        className={`h-8 w-8 ${openNav ? "rotate-180" : ""}`}
         onClick={() => setOpenNav(!openNav)}
       >
         <ChevronDownIcon size="medium" />

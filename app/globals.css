@@ -26,7 +26,8 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-a {
+a,
+button {
   @apply underline underline-offset-4 transition-all hover:scale-105 hover:text-secondary;
 }
 
