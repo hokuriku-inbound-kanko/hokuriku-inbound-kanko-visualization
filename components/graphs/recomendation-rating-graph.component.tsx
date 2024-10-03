@@ -26,7 +26,7 @@ export default async function RecomendationRatingGraph(props: { span: { from: Da
       },
       [[]],
     )[0]
-    .sort((a, b) => b.count - a.count);
+    .sort((a, b) => Number(b.answer) - Number(a.answer));
 
   const options = {
     series: answers.map((v) => v.count),

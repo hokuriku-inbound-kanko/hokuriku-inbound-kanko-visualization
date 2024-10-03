@@ -4,6 +4,16 @@ import Card from "../card.component";
 import { Graph } from "../graph.component";
 import Papa from "papaparse";
 
+export const evaluationOrderRef: Record<string, number> = {
+  大変満足: 7,
+  満足: 6,
+  やや満足: 5,
+  どちらとも言えない: 4,
+  やや不満: 3,
+  不満: 2,
+  大変不満: 1,
+};
+
 export default async function FacilityEvaluationGraph(props: { span: { from: Date; to?: Date } }) {
   const dataService = new DataService();
 
@@ -26,7 +36,7 @@ export default async function FacilityEvaluationGraph(props: { span: { from: Dat
       },
       [[]],
     )[0]
-    .sort((a, b) => b.count - a.count);
+    .sort((a, b) => evaluationOrderRef[b.answer] - evaluationOrderRef[a.answer]);
 
   const options = {
     series: answers.map((v) => v.count),
