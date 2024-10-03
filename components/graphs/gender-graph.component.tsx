@@ -27,7 +27,11 @@ export default async function GenderGraph(props: { span: { from: Date; to?: Date
       },
       [[]],
     )[0]
-    .sort((a, b) => b.count - a.count);
+    .sort((a, b) => {
+      if (a.answer === "その他") return 1;
+      else if (b.answer === "その他") return -1;
+      return b.count - a.count;
+    });
 
   const options = {
     series: answers.map((v) => v.count),
