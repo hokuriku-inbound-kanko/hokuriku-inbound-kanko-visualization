@@ -43,7 +43,7 @@ export class DateService {
     const diffEpochTime = to.getTime() - from.getTime();
     return {
       times: diffEpochTime,
-      days: Math.floor(diffEpochTime / (1000 * 60 * 60 * 24)),
+      days: Math.ceil(diffEpochTime / (1000 * 60 * 60 * 24)),
     };
   }
 }

@@ -46,13 +46,13 @@ export class DataService {
 
     for (
       let date = from;
-      date.getTime() < (to ? to?.getTime() : yesterday.getTime());
+      date.getTime() <= (to ? to?.getTime() : yesterday.getTime());
       date.setDate(date.getDate() + 1)
     ) {
       const dailyData = await this.get(category, DateService.dateStrOf(date));
 
       if (category === "hokuriku-gift-campaign") {
-        res += dailyData.replace(/.*?\n.*?\n/, "");
+        res += dailyData.split("\n").slice(2).join("\n");
       } else {
         res += dailyData;
       }
