@@ -9,7 +9,8 @@ on:
   push:
     branches: ["main"]
   schedule:
-    - cron: "47 5 * * *"
+    # UTCで実行されているのでJST AM5時は20時
+    - cron: "47 20 * * *"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
