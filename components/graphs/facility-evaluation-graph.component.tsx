@@ -2,7 +2,6 @@ import { DataService } from "@/service/data.service";
 import { DateService } from "@/service/date.service";
 import Card from "../card.component";
 import { Graph } from "../graph.component";
-import Papa from "papaparse";
 
 export const evaluationOrderRef: Record<string, number> = {
   大変満足: 7,
@@ -17,14 +16,12 @@ export const evaluationOrderRef: Record<string, number> = {
 export default async function FacilityEvaluationGraph(props: { span: { from: Date; to?: Date } }) {
   const dataService = new DataService();
 
-  const data = Papa.parse<string[]>(
-    await dataService.getSpan(
-      "hokuriku-gift-campaign",
-      DateService.nDaysAgo(DateService.sub(props.span.from, props.span.to ?? new Date()).days),
-    ),
+  const data = await dataService.getSpan(
+    "hokuriku-gift-campaign",
+    DateService.nDaysAgo(DateService.sub(props.span.from, props.span.to ?? new Date()).days),
   );
 
-  const answers = data.data
+  const answers = data
     .map((row) => row[106])
     .filter((v) => !!v)
     .map((v) => v.toString().trim())

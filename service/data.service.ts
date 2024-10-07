@@ -1,5 +1,6 @@
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "fs";
 import { DateService } from "./date.service";
+import Papa from "papaparse";
 
 /**
  * 北陸インバウンド観光DXデータコンソーシアムで収集しているオープンデータの種類
@@ -21,27 +22,32 @@ export class DataService {
     `https://raw.githubusercontent.com/hokuriku-inbound-kanko/${category}/refs/heads/main/daily/${dateStr}.csv`;
 
   async get(category: DataCategories, dateStr: string) {
-    let csvs: string[] = [];
+    let caches: string[] = [];
     try {
-      csvs = readdirSync("csv");
+      caches = readdirSync("caches");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       if ("code" in error && error.code === "ENOENT") {
-        mkdirSync("csv");
+        mkdirSync("caches");
       }
     }
-    const cacheName = `${category}-${dateStr}.csv`;
-    if (csvs.includes(cacheName)) {
-      return readFileSync(`csv/${cacheName}`).toString();
+    const cacheName = `caches/${category}-${dateStr}.json`;
+    if (caches.includes(cacheName)) {
+      return JSON.parse(readFileSync(cacheName).toString()) as string[][];
     } else {
-      const data = await (await fetch(this.ghDataUrl(category, dateStr))).text();
-      writeFileSync(`csv/${cacheName}`, data);
-      return data;
+      let raw = await (await fetch(this.ghDataUrl(category, dateStr))).text();
+      if (category === "hokuriku-gift-campaign") {
+        raw = raw.split("\n").slice(2).join("\n");
+      }
+      const parsed = Papa.parse<string[]>(raw);
+      if (parsed.errors.length > 0) console.warn(parsed.errors);
+      writeFileSync(cacheName, JSON.stringify(parsed.data));
+      return parsed.data;
     }
   }
 
   async getSpan(category: DataCategories, from: Date, to?: Date) {
-    let res = "";
+    const res: string[][] = [];
     const yesterday = DateService.yesterday();
 
     for (
@@ -49,13 +55,7 @@ export class DataService {
       date.getTime() <= (to ? to?.getTime() : yesterday.getTime());
       date.setDate(date.getDate() + 1)
     ) {
-      const dailyData = await this.get(category, DateService.dateStrOf(date));
-
-      if (category === "hokuriku-gift-campaign") {
-        res += dailyData.split("\n").slice(2).join("\n");
-      } else {
-        res += dailyData;
-      }
+      res.push(...(await this.get(category, DateService.dateStrOf(date))));
     }
 
     return res;

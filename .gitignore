@@ -35,5 +35,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# cached csvs
-csv
+# cached datas
+caches

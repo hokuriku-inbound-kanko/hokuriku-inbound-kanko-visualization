@@ -1,17 +1,14 @@
 import { DataService } from "@/service/data.service";
 import { DateService } from "@/service/date.service";
-import Papa from "papaparse";
 import Card from "../card.component";
 import { Graph } from "../graph.component";
 
 export default async function AgeRangeGraph(props: { span: { from: Date; to?: Date } }) {
   const dataService = new DataService();
 
-  const data = Papa.parse<string[]>(
-    await dataService.getSpan(
-      "hokuriku-gift-campaign",
-      DateService.nDaysAgo(DateService.sub(props.span.from, props.span.to ?? new Date()).days),
-    ),
+  const data = await dataService.getSpan(
+    "hokuriku-gift-campaign",
+    DateService.nDaysAgo(DateService.sub(props.span.from, props.span.to ?? new Date()).days),
   );
 
   const answers: { answer: string; from: number; to: number; count: number }[] = [];
@@ -19,7 +16,7 @@ export default async function AgeRangeGraph(props: { span: { from: Date; to?: Da
     answers.push({ answer: `${i}歳~${i + 9}歳`, from: i, to: i + 9, count: 0 });
   }
   answers.push({ answer: "80歳~", from: 80, to: Infinity, count: 0 });
-  data.data
+  data
     .map((row) => new Date().getFullYear() - Number(row[8]))
     .forEach((answer) => {
       answers.forEach((v, i) => {
