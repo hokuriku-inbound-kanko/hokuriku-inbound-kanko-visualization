@@ -1,4 +1,3 @@
-import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "fs";
 import { DateService } from "./date.service";
 import Papa from "papaparse";
 
@@ -23,26 +22,60 @@ export class DataService {
 
   async get(category: DataCategories, dateStr: string) {
     let caches: string[] = [];
-    try {
-      caches = readdirSync("caches");
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-      if ("code" in error && error.code === "ENOENT") {
-        mkdirSync("caches");
-      }
-    }
-    const cacheName = `caches/${category}-${dateStr}.json`;
-    if (caches.includes(cacheName)) {
-      return JSON.parse(readFileSync(cacheName).toString()) as string[][];
-    } else {
+    const cacheDir = "caches";
+    const cacheName = `${category}-${dateStr}.json`;
+
+    const getData = async () => {
       let raw = await (await fetch(this.ghDataUrl(category, dateStr))).text();
       if (category === "hokuriku-gift-campaign") {
         raw = raw.split("\n").slice(2).join("\n");
       }
       const parsed = Papa.parse<string[]>(raw);
       if (parsed.errors.length > 0) console.warn(parsed.errors);
-      writeFileSync(cacheName, JSON.stringify(parsed.data));
-      return parsed.data;
+      return parsed.data.filter((row) => row.length === 150);
+    };
+    if (typeof window !== "undefined") {
+      // CLIENT
+      const opfsRoot = await navigator.storage.getDirectory();
+      const cacheDirHandle = await opfsRoot.getDirectoryHandle(cacheDir, { create: true });
+      const cacheFileHandle = await cacheDirHandle.getFileHandle(cacheName, { create: true });
+      const cacheFile = await cacheFileHandle.getFile();
+      // safariではOPFSのcreateWritableが利用できないので
+      // そのために判定を挟む
+      if ("createWritable" in cacheFileHandle && cacheFile.size === 0) {
+        const data = await getData();
+        try {
+          const writable = await cacheFileHandle.createWritable();
+          await writable.write(JSON.stringify(data));
+          writable.close();
+        } catch (error) {
+          console.error(error);
+        }
+        return data;
+      } else if (cacheFile.size > 0) {
+        return JSON.parse(await cacheFile.text());
+      } else {
+        // opfsが利用できないので毎回データを取りに行く
+        return await getData();
+      }
+    } else {
+      const fs = await import("fs");
+      // SERVER
+      try {
+        caches = fs.readdirSync("caches");
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } catch (error: any) {
+        if ("code" in error && error.code === "ENOENT") {
+          fs.mkdirSync("caches");
+        }
+      }
+      if (caches.includes(`${cacheDir}/${cacheName}`)) {
+        return JSON.parse(fs.readFileSync(`${cacheDir}/${cacheName}`).toString()) as string[][];
+      } else {
+        const data = await getData();
+        fs.writeFileSync(`${cacheDir}/${cacheName}`, JSON.stringify(data));
+        return data;
+      }
     }
   }
 
@@ -51,7 +84,7 @@ export class DataService {
     const yesterday = DateService.yesterday();
 
     for (
-      let date = from;
+      let date = new Date(from);
       date.getTime() <= (to ? to?.getTime() : yesterday.getTime());
       date.setDate(date.getDate() + 1)
     ) {
