@@ -1,3 +1,4 @@
+import Card from "@/components/card.component";
 import AgeRangeGraph from "@/components/graphs/age-range-graph.component";
 import FacilityEvaluationGraph from "@/components/graphs/facility-evaluation-graph.component";
 import FacilityInfoSourceGraph from "@/components/graphs/facility-info-source-graph.component";
@@ -12,11 +13,15 @@ import TripInfoSourceGraph from "@/components/graphs/trip-info-source-graph.comp
 import VisitedAreaGraph from "@/components/graphs/visited-area-graph.component";
 import VisitedFacilityGraph from "@/components/graphs/visited-facility-graph.component";
 import VisitedPrefectureGraph from "@/components/graphs/visited-prefecture-graph.component";
+import { Table } from "@/components/table.component";
+import { dataFormats, DataService } from "@/service/data.service";
 import { DateService } from "@/service/date.service";
 
 export default async function Home() {
+  const dataService = new DataService();
   const weekAgo = DateService.nDaysAgo(8);
   const yesterday = DateService.yesterday();
+  const tableBody = await dataService.getSpan("hokuriku-gift-campaign", weekAgo, yesterday);
   return (
     <>
       <h2 className="mb-4 text-xl font-bold">直近1週間のアンケート結果</h2>
@@ -39,6 +44,18 @@ export default async function Home() {
         <FacilityEvaluationGraph span={{ from: weekAgo, to: yesterday }} />
         <RecomendationRatingGraph span={{ from: weekAgo, to: yesterday }} />
       </div>
+      <Card className="mt-4 h-screen w-full sm:h-[calc(630px+1em+2em+54px)]" title="ソースデータ">
+        <p className="text-sm">変更はグラフに反映されません</p>
+        <p className="text-sm text-primary sm:hidden">画面サイズの大きな端末だと見やすくなります</p>
+        <Table
+          body={tableBody.map((row) =>
+            row.filter((_, i) => dataFormats["hokuriku-gift-campaign"][i].essential),
+          )}
+          header={dataFormats["hokuriku-gift-campaign"]
+            .map((v) => v.headerTitle)
+            .filter((_, i) => dataFormats["hokuriku-gift-campaign"][i].essential)}
+        />
+      </Card>
     </>
   );
 }
