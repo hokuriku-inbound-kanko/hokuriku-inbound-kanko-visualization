@@ -83,6 +83,7 @@ function TableHead(props: TableHeadProps) {
 type TableProps = {
   header: (string | number)[];
   body: (string | number)[][];
+  modifiedBodyRaiser?: (data: (string | number)[][]) => void;
 };
 /**
  * クライアントで操作可能な表を表示するコンポーネント
@@ -132,6 +133,7 @@ export function Table(props: TableProps) {
         }
       });
     setTableBody(dirty);
+    if (props.modifiedBodyRaiser) props.modifiedBodyRaiser(dirty);
   }, [sortColumnIndex, filterColumn]);
 
   return (
