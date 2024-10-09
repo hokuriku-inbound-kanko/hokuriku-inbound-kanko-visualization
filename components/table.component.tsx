@@ -118,7 +118,7 @@ export function Table(props: TableProps) {
   };
 
   useEffect(() => {
-    let dirty = props.body
+    const dirty = props.body
       .filter((row) => {
         if (filterColumn.values.length === 0) return true;
         else return filterColumn.values.includes(row[filterColumn.index]);
