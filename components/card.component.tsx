@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 type Props = {
   title: string;
   children: ReactNode;
-  className: string;
+  className?: string;
 };
 
 export default function Card(props: Props) {
