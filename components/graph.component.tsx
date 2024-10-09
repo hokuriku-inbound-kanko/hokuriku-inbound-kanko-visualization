@@ -14,7 +14,7 @@ export function Graph(props: Required<Pick<Props, "type" | "series" | "options">
   const [innerWidth, setInnerWidth] = useState(640);
   useEffect(() => {
     setInnerWidth(window.innerWidth);
-  });
+  }, [setInnerWidth]);
   return (
     <div className="relative grid h-fit w-[280px] place-content-center sm:h-[270px] sm:w-[360px]">
       <div className="absolute left-0 top-0 grid h-fit w-[280px] place-content-center sm:h-[270px] sm:w-[360px]">
