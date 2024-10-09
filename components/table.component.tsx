@@ -155,7 +155,7 @@ export function Table(props: TableProps) {
         </thead>
         <tbody>
           {tableBody.map((row, i) => (
-            <tr className="even:bg-separator" key={`${i}-${row[0]}`}>
+            <tr className="even:bg-separator hover:font-bold" key={`${i}-${row[0]}`}>
               {row.map((v, j) => (
                 <td
                   className={`border-r-2 border-separator px-4 py-2 last:border-r-0 ${!Number.isNaN(Number(v)) ? "text-end" : "text-start"} ${v.toString().match(/[\n|\r]/) ? "whitespace-break-spaces" : ""}`}
