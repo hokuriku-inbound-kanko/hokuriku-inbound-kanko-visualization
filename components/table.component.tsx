@@ -167,6 +167,14 @@ export function Table(props: TableProps) {
             </tr>
           ))}
         </tbody>
+        <tfoot className="font-bold">
+          <th className="border-r-2 border-t-2 border-primary px-4 py-2" scope="row">
+            行数
+          </th>
+          <td className="border-r-2 border-t-2 border-primary px-4 py-2 text-right">
+            {tableBody.length}
+          </td>
+        </tfoot>
       </table>
     </div>
   );
