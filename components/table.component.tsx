@@ -45,7 +45,7 @@ function TableHead(props: TableHeadProps) {
         >
           <FilterIcon size="small" />
           <div className="absolute left-0 top-4 hidden flex-col items-start rounded-lg border-2 border-separator bg-surface p-4 font-normal text-text group-hover:flex group-focus:flex">
-            <label className="mb-2 w-full border-b-2 border-separator pb-2">
+            <label className="mb-2 w-full cursor-pointer border-b-2 border-separator pb-2">
               <input
                 type="checkbox"
                 onChange={(ev) => {
@@ -60,7 +60,7 @@ function TableHead(props: TableHeadProps) {
               <span className="ml-2">すべて</span>
             </label>
             {props.columnValues.map((v, i) => (
-              <label key={`${i}-${v}`}>
+              <label className="cursor-pointer" key={`${i}-${v}`}>
                 <input
                   type="checkbox"
                   onChange={(ev) => {
