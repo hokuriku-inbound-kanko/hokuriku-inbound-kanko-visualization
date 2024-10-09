@@ -44,7 +44,7 @@ function TableHead(props: TableHeadProps) {
           className={`group relative ml-2 h-4 w-4 ${props.filteredWith ? "scale-105 text-secondary" : "text-gray-500"}`}
         >
           <FilterIcon size="small" />
-          <div className="absolute left-0 top-4 hidden flex-col items-start rounded-lg border-2 border-separator bg-surface p-4 font-normal text-text group-hover:flex">
+          <div className="absolute left-0 top-4 hidden flex-col items-start rounded-lg border-2 border-separator bg-surface p-4 font-normal text-text group-hover:flex group-focus:flex">
             <label className="mb-2 w-full border-b-2 border-separator pb-2">
               <input
                 type="checkbox"
