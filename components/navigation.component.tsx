@@ -1,5 +1,5 @@
 "use client";
-import { ArchiveIcon, ChevronDownIcon, FlameIcon } from "@primer/octicons-react";
+import { ArchiveIcon, ChevronDownIcon, FlameIcon, PencilIcon } from "@primer/octicons-react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -24,6 +24,10 @@ export default function Navigation() {
         <Link className="flex items-center gap-2" href="/all">
           <ArchiveIcon size="medium" />
           アンケート全期間のグラフ
+        </Link>
+        <Link className="flex items-center gap-2" href="/mygraph">
+          <PencilIcon size="medium" />
+          マイグラフ
         </Link>
       </nav>
     </>
