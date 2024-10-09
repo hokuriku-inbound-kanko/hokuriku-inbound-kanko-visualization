@@ -27,7 +27,7 @@ export default function RootLayout({
             rel="noopener noreferrer"
           >
             <GraphIcon size="medium" verticalAlign="top" className="fill-primary" />
-            <h1 className="text-2xl font-bold">オープンデータグラフ</h1>
+            <h1 className="text-2xl font-bold">北陸観光DX:グラフ</h1>
           </Link>
         </header>
         <main className="flex h-full w-full flex-grow flex-col items-center p-4">{children}</main>
