@@ -132,7 +132,7 @@ export function Table(props: TableProps) {
         }
       });
     setTableBody(dirty);
-  }, [sortColumnIndex, filterColumn, columnCounts, props.body]);
+  }, [sortColumnIndex, filterColumn]);
 
   return (
     <div className="relative h-full w-full overflow-scroll rounded-lg border-2 border-primary bg-surface">
