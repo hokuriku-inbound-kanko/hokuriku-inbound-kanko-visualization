@@ -6,6 +6,25 @@ import { useEffect, useState } from "react";
 import type { Props } from "react-apexcharts";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
+export const graphTypes = [
+  "line",
+  "area",
+  "bar",
+  "pie",
+  "donut",
+  "radialBar",
+  "scatter",
+  "bubble",
+  "heatmap",
+  "candlestick",
+  "boxPlot",
+  "radar",
+  "polarArea",
+  "rangeBar",
+  "rangeArea",
+  "treemap",
+] as const;
+
 /**
  * クライアントでApexChartのグラフを表示するコンポーネント
  * @param props Apex ChartのChartコンポーネントにわたすプロパティ
