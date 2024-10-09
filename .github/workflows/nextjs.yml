@@ -9,8 +9,9 @@ on:
   push:
     branches: ["main"]
   schedule:
-    # UTCで実行されているのでJST AM5時は20時
-    - cron: "47 20 * * *"
+    # UTCで実行されているのでJST AM9時に実行される
+    # Dateを初期化するときに毎回タイムゾーンを指定すれば早朝を指定できる
+    - cron: "15 0 * * *"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
