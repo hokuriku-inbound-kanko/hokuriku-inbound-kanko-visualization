@@ -58,6 +58,21 @@ export function Graph(props: Required<Pick<Props, "type" | "series" | "options">
                 },
               }
             : {},
+          plotOptions:
+            props.type === "donut"
+              ? {
+                  pie: {
+                    donut: {
+                      labels: {
+                        show: true,
+                        total: {
+                          show: true,
+                        },
+                      },
+                    },
+                  },
+                }
+              : {},
         }}
       />
     </div>
