@@ -70,7 +70,7 @@ export default function MyGraph() {
         <label>
           開始:
           <input
-            className="rounded-full border-2 p-2"
+            className="rounded-full border-2 border-separator p-2 hover:cursor-pointer hover:border-secondary"
             type="date"
             value={DateService.dateStrOf(fromDate)}
             onChange={(ev) => {
@@ -83,7 +83,7 @@ export default function MyGraph() {
         <label>
           終了:
           <input
-            className="rounded-full border-2 p-2"
+            className="rounded-full border-2 border-separator p-2 hover:cursor-pointer hover:border-secondary"
             type="date"
             value={DateService.dateStrOf(toDate)}
             onChange={(ev) => {
@@ -113,12 +113,12 @@ export default function MyGraph() {
         className="mt-4 h-fit w-full border-2 border-separator bg-surface sm:h-fit"
         title="オリジナルグラフ"
       >
-        <div className="flex gap-x-4">
+        <div className="flex flex-col gap-4 px-4 sm:flex-row">
           <Card className="flex w-full flex-col" title="コントローラー">
             <label className="flex w-full items-center gap-2 rounded-full border-2 border-separator bg-surface p-4">
               <span className="w-32 shrink-0">グラフ形状</span>
               <select
-                className="w-full rounded-full border-2 border-separator p-2"
+                className="w-full rounded-full border-2 border-separator p-2 hover:cursor-pointer hover:border-secondary"
                 name="graphType"
                 onChange={(ev) => onChangeGraphType(ev)}
               >
@@ -129,7 +129,7 @@ export default function MyGraph() {
             <label className="flex w-full items-center gap-2 rounded-full border-2 border-separator bg-surface p-4">
               <span className="w-32 shrink-0">グラフにする列</span>
               <select
-                className="w-full overflow-hidden rounded-full border-2 border-separator p-2"
+                className="w-full overflow-hidden rounded-full border-2 border-separator p-2 hover:cursor-pointer hover:border-secondary"
                 name="graphSeries"
                 onChange={(ev) => onChangeGraphOptions(ev)}
               >
