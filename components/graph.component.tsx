@@ -45,7 +45,20 @@ export function Graph(props: Required<Pick<Props, "type" | "series" | "options">
         series={props?.series}
         height={innerWidth <= 640 ? 210 : 270}
         width={innerWidth <= 640 ? 280 : 360}
-        options={{ ...props?.options, chart: { toolbar: { show: false } } }}
+        options={{
+          ...props?.options,
+          chart: { toolbar: { show: false } },
+          legend: { show: false },
+          dataLabels: ["pie", "donut"].includes(props.type)
+            ? {
+                enabled: true,
+                formatter: (_, opts) => {
+                  const name = String(opts.w.globals.labels[opts.seriesIndex]);
+                  return name;
+                },
+              }
+            : {},
+        }}
       />
     </div>
   );
