@@ -107,7 +107,7 @@ export default function MyGraph() {
             }}
           />
         ) : (
-          <SyncIcon className="animate-primary m-auto text-surface" size="large" />
+          <SyncIcon className="m-auto animate-spin text-surface" size="large" />
         )}
       </Card>
       <Card
