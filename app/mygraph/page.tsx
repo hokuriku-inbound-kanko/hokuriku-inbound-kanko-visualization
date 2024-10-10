@@ -15,6 +15,7 @@ export default function MyGraph() {
   const [toDate, setToDate] = useState(DateService.yesterday());
   const [tableBody, setTableBody] = useState<(string | number)[][]>();
   const [modifiedTableBody, setModifiedTableBody] = useState<(string | number)[][]>();
+  const [graphTitle, setGraphTitle] = useState("グラフタイトル");
   const [graphType, setGraphType] = useState<(typeof graphTypes)[number]>("donut");
   const [graphOptions, setGraphOptions] = useState<
     ApexOptions & { series: ApexAxisChartSeries | ApexNonAxisChartSeries }
@@ -116,6 +117,15 @@ export default function MyGraph() {
         <div className="flex flex-col gap-4 px-4 sm:flex-row">
           <Card className="flex w-full flex-col" title="コントローラー">
             <label className="flex w-full items-center gap-2 rounded-full border-2 border-separator bg-surface p-4">
+              <span className="w-32 shrink-0">グラフタイトル</span>
+              <input
+                type="text"
+                className="w-full overflow-hidden rounded-full border-2 border-separator p-2 hover:cursor-pointer hover:border-secondary"
+                placeholder="グラフタイトル"
+                onChange={(ev) => setGraphTitle(ev.target.value)}
+              ></input>
+            </label>
+            <label className="flex w-full items-center gap-2 rounded-full border-2 border-separator bg-surface p-4">
               <span className="w-32 shrink-0">グラフ形状</span>
               <select
                 className="w-full rounded-full border-2 border-separator p-2 hover:cursor-pointer hover:border-secondary"
@@ -143,7 +153,7 @@ export default function MyGraph() {
               </select>
             </label>
           </Card>
-          <Card className="w-full" title="グラフ">
+          <Card className="w-full" title={graphTitle}>
             <Graph type={graphType} series={graphOptions.series} options={graphOptions} />
           </Card>
         </div>
