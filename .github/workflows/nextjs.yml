@@ -9,9 +9,8 @@ on:
   push:
     branches: ["main"]
   schedule:
-    # UTCで実行されているのでJST AM9時に実行される
-    # Dateを初期化するときに毎回タイムゾーンを指定すれば早朝を指定できる
-    - cron: "15 0 * * *"
+    # UTCで実行されているのでJST AM6時前に実行される
+    - cron: "54 20 * * *"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -64,9 +63,12 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Build with Next.js
-        run: pnpm next build
+        run: |
+          date
+          pnpm next build
         env:
           PAGES: true
+          TZ: "Asia/Tokyo"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
