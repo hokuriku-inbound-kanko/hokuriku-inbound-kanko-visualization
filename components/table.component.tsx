@@ -41,38 +41,40 @@ function TableHead(props: TableHeadProps) {
       ) : null}
       {props.onFilterChanged ? (
         <button
-          className={`group relative ml-2 h-4 w-4 ${props.filteredWith ? "scale-105 text-secondary" : "text-gray-500"}`}
+          className={`balloon-anchor group ml-2 h-4 w-4 ${props.filteredWith ? "active" : ""}`}
         >
           <FilterIcon size="small" />
-          <div className="absolute left-0 top-4 hidden max-h-52 flex-col items-start overflow-scroll rounded-lg border-2 border-separator bg-surface p-4 font-normal text-text group-hover:flex group-focus:flex">
-            <label className="mb-2 w-full border-b-2 border-separator pb-2 hover:cursor-pointer hover:font-bold">
-              <input
-                type="checkbox"
-                onChange={(ev) => {
-                  if (props.onFilterChanged) props.onFilterChanged(ev.target.checked);
-                  setChecked([]);
-                }}
-                checked={
-                  props.filteredWith &&
-                  (checked.length === 0 || checked.length === props.columnValues.length)
-                }
-              ></input>
-              <span className="ml-2">すべて</span>
-            </label>
-            {props.columnValues.map((v, i) => (
-              <label className="hover:cursor-pointer hover:font-bold" key={`${i}-${v}`}>
+          <div className="balloon-body h-fit group-hover:block">
+            <div className="balloon-content">
+              <label className="mb-2 w-full border-b-2 border-separator pb-2 hover:cursor-pointer hover:font-bold">
                 <input
                   type="checkbox"
                   onChange={(ev) => {
-                    onChangeCheckbox(ev, v);
+                    if (props.onFilterChanged) props.onFilterChanged(ev.target.checked);
+                    setChecked([]);
                   }}
                   checked={
-                    props.filteredWith ? (checked.length > 0 ? checked.includes(v) : true) : false
+                    props.filteredWith &&
+                    (checked.length === 0 || checked.length === props.columnValues.length)
                   }
                 ></input>
-                <span className="ml-2">{v}</span>
+                <span className="ml-2">すべて</span>
               </label>
-            ))}
+              {props.columnValues.map((v, i) => (
+                <label className="hover:cursor-pointer hover:font-bold" key={`${i}-${v}`}>
+                  <input
+                    type="checkbox"
+                    onChange={(ev) => {
+                      onChangeCheckbox(ev, v);
+                    }}
+                    checked={
+                      props.filteredWith ? (checked.length > 0 ? checked.includes(v) : true) : false
+                    }
+                  ></input>
+                  <span className="ml-2">{v}</span>
+                </label>
+              ))}
+            </div>
           </div>
         </button>
       ) : null}

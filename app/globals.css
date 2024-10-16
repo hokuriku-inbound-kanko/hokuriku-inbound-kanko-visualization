@@ -36,3 +36,28 @@ button {
     text-wrap: balance;
   }
 }
+
+@layer components {
+  .balloon-anchor {
+    @apply relative inline-block text-gray-500;
+  }
+  .balloon-anchor.active,
+  .balloon-anchor:hover,
+  .balloon-anchor:focus {
+    @apply scale-105 text-secondary;
+  }
+  .balloon-body {
+    @apply absolute -bottom-8 left-1/2 top-8 hidden h-fit -translate-x-1/2 overflow-visible whitespace-nowrap rounded-lg border-2 border-separator bg-surface font-normal text-text;
+    &::before {
+      content: "";
+      @apply absolute -top-8 left-1/2 -translate-x-4 overflow-visible border-[16px] border-transparent border-b-separator;
+    }
+    &::after {
+      content: "";
+      @apply absolute -top-[29px] left-1/2 -translate-x-4 overflow-visible border-[16px] border-transparent border-b-surface;
+    }
+  }
+  .balloon-content {
+    @apply flex h-full max-h-52 w-full max-w-36 flex-col items-start overflow-x-visible overflow-y-scroll p-4;
+  }
+}
