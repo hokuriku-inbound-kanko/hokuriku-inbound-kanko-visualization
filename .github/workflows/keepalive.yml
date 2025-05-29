@@ -4,9 +4,7 @@ on:
   # 定期実行
   schedule:
     # UTCで実行されているのでJST AM0時過ぎに実行される
-    # - cron: "10 15 1 * *"
-    # - cron: "10 15 30 * *"
-    - cron: "05 8 29 * *"
+    - cron: "10 15 1 * *"
 
   # 手動実行
   workflow_dispatch:
