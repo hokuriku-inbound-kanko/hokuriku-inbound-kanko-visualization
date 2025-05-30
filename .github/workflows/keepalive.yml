@@ -28,4 +28,5 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh workflow run nextjs.yml
+          gh workflow enable keepalive.yml
+          gh workflow enable nextjs.yml
