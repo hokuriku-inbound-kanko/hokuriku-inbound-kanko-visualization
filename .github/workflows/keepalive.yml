@@ -1,3 +1,4 @@
+# 参考: https://qiita.com/kerupani129/items/fda97ed2cf34a156d47d
 name: Prevent scheduled workflow from being automatically disabled
 
 on:
