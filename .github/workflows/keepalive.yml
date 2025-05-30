@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # nextjs workflowを実行する
+  # workflowを有効化する
   keepalive:
     permissions:
       actions: write
