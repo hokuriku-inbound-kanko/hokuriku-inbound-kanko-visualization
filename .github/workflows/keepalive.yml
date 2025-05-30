@@ -1,0 +1,32 @@
+# 参考: https://qiita.com/kerupani129/items/fda97ed2cf34a156d47d
+name: Prevent scheduled workflow from being automatically disabled
+
+on:
+  # 定期実行
+  schedule:
+    # UTCで実行されているのでJST AM0時過ぎに実行される
+    - cron: "10 15 1 * *"
+
+  # 手動実行
+  workflow_dispatch:
+
+concurrency:
+  group: keepalive
+  cancel-in-progress: false
+
+jobs:
+  # workflowを有効化する
+  keepalive:
+    permissions:
+      actions: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Trigger nextjs workflow
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow enable keepalive.yml
+          gh workflow enable nextjs.yml
