@@ -30,3 +30,11 @@ jobs:
         run: |
           gh workflow enable keepalive.yml
           gh workflow enable nextjs.yml
+      - name: Notify Slack
+        if: failure()
+        uses: ./.github/actions/slack-notify
+        with:
+          workflow: ${{ github.workflow }}
+          job: ${{ github.job }}
+          title: "【北陸インバウンド】ワークフロー有効化処理失敗"
+          webhook_url: ${{ secrets.SLACK_WEBHOOK }}

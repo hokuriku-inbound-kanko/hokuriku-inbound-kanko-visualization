@@ -1,0 +1,45 @@
+name: 'Slack Notify'
+description: 'GitHub Actionsの実行結果をSlackに通知します'
+
+inputs:
+  title:
+    description: 'Slack通知のタイトル'
+    required: true
+  workflow:
+    description: 'ワークフロー名'
+    required: true
+  job:
+    description: 'ジョブ名'
+    required: true
+  webhook_url:
+    description: 'SlackのIncoming Webhook URL'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - shell: bash
+      run: |
+        curl --fail -X POST -H 'Content-type: application/json' \
+        --data '{
+          "attachments": [
+            {
+              "color": "#E01E5A",
+              "title": "${{ inputs.title }}",
+              "title_link": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+              "fields": [
+                {
+                  "title": "ワークフロー",
+                  "value": "${{ inputs.workflow }}",
+                  "short": true
+                },
+                {
+                  "title": "ジョブ",
+                  "value": "${{ inputs.job }}",
+                  "short": true
+                }
+              ],
+              "text": "GitHub Actionsの実行中にエラーが発生しました。至急ログを確認してください。"
+            }
+          ]
+        }' ${{ inputs.webhook_url }}
