@@ -1,12 +1,18 @@
 name: 'Slack Notify'
+description: 'GitHub Actionsの実行結果をSlackに通知します'
+
 inputs:
   title:
+    description: 'Slack通知のタイトル'
     required: true
   workflow:
+    description: 'ワークフロー名'
     required: true
   job:
+    description: 'ジョブ名'
     required: true
   webhook_url:
+    description: 'SlackのIncoming Webhook URL'
     required: true
 
 runs:
