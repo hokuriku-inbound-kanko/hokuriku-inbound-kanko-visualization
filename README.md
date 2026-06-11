@@ -1,19 +1,50 @@
-# 北陸インバウンド観光DX オープンデータ可視化ウェブアプリケーション
+# hokuriku-inbound-kanko-visualization
 
-北陸インバウンド観光DX・データコンソーシアムが収集したオープンデータを可視化するウェブアプリケーション
+日本語のREADMEはこちらです: [README.ja.md](README.ja.md)
 
-[アプリを開く](https://hokuriku-inbound-kanko.github.io/hokuriku-inbound-kanko-visualization/)(毎朝6時更新)
+A Next.js web app visualizing open tourism survey data from the Hokuriku Inbound Tourism DX Data Consortium.
 
-[<img src="pagelink-qr.png" alt="GitHub Pages へのQR" width="200"/>](https://hokuriku-inbound-kanko.github.io/hokuriku-inbound-kanko-visualization/)
+[Live App](https://hokuriku-inbound-kanko.github.io/hokuriku-inbound-kanko-visualization/) (updated daily at 6 AM JST)
 
-## 開発者向け資料
+## Features
 
-このプロジェクトは [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app) を利用して作成された [Next.js](https://nextjs.org) プロジェクトです。
+- **14 interactive charts** for recent 7-day data:
+  - **Visited locations**: Prefecture, Area, Facility
+  - **Demographics**: Age range, Gender
+  - **Nationalities** and **number of visits to Japan**
+  - **Trip/facility info sources**
+  - **Purpose of visit** (Region, Prefecture, Facility)
+  - **Facility evaluation** and **recommendation ratings**
+- **/all view**: Historical data aggregation
+- **/mygraph view**: Custom graph builder for filtered datasets
 
-### 開発サーバーの起動
+## Tech Stack
+
+- Next.js 14 (App Router)
+- React 18
+- TypeScript
+- Tailwind CSS
+- ApexCharts for data visualization
+- Papaparse for CSV parsing
+- pnpm for package management
+
+## Local Development
 
 ```bash
+pnpm install
 pnpm dev
 ```
 
-ブラウザで [http://localhost:3000](http://localhost:3000) を開くことで起動された開発サーバーのビルド結果を閲覧できます。
+Runs the development server at [http://localhost:3000](http://localhost:3000).
+
+## Data Source
+
+Daily CSV survey data from the [hokuriku-gift-campaign](https://github.com/hokuriku-inbound-kanko/hokuriku-gift-campaign) repository, sourced from [welcome-hokuriku.jp](https://welcome-hokuriku.jp).
+
+## Deployment
+
+Automatically deployed to GitHub Pages via GitHub Actions. Updates daily at 6 AM JST.
+
+## License
+
+MIT License. See [LICENSE](LICENSE) for details.
